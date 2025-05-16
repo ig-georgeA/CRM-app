@@ -1,0 +1,208 @@
+<div class="row-layout group">
+  <div class="column-layout group_1">
+    <div class="column-layout group_2">
+      <p class="text">
+        Quarterly Performance
+      </p>
+      <igx-category-chart [dataSource]="financialSales" chartType="column" initialGroups="Country" initialSummaries="SUM(Sales)" groupSorts="Country asc" computedPlotAreaMarginMode="series" class="category-chart"></igx-category-chart>
+      <a target="_blank" [routerLink]="['/reports']" class="ig-typography__body-2 hyperlink">
+        View All Reports
+      </a>
+    </div>
+    <div class="column-layout group_3">
+      <p class="text">
+        New Contracts
+      </p>
+      <igx-grid [data]="northwindSwaggerCustomerDto" primaryKey="customerId" [allowFiltering]="true" filterMode="excelStyleFilter" class="grid">
+        <igx-column field="customerId" dataType="string" header="customerId" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="companyName" dataType="string" header="companyName" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="contactName" dataType="string" header="contactName" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="contactTitle" dataType="string" header="contactTitle" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="address.street" dataType="string" header="address street" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="address.city" dataType="string" header="address city" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="address.region" dataType="string" header="address region" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="address.postalCode" dataType="string" header="address postalCode" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="address.country" dataType="string" header="address country" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+        <igx-column field="address.phone" dataType="string" header="address phone" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      </igx-grid>
+      <a target="_blank" [routerLink]="['/contracts']" class="ig-typography__body-2 hyperlink">
+        View All Contracts
+      </a>
+    </div>
+  </div>
+  <div class="column-layout group_4">
+    <div class="column-layout group_5">
+      <p class="text">
+        New Accounts
+      </p>
+      <div class="column-layout group_6">
+        <igx-list class="list">
+          @for (item of northwindSwaggerCustomerDto; track item) {
+            <igx-list-item>
+              <span igxListThumbnail>
+                <igx-avatar shape="rounded" class="avatar avatar_3">
+                  <igx-icon class="icon">
+                    apartment
+                  </igx-icon>
+                </igx-avatar>
+              </span>
+              <span igxListLine>
+                <div class="column-layout group_7">
+                  <a target="_blank" [routerLink]="['/account-detail']" class="ig-typography__body-2 hyperlink_1">
+                    {{ item.companyName }}
+                  </a>
+                  <p class="ig-typography__subtitle-2 text_1">
+                    {{ item.customerId }}
+                  </p>
+                  <p class="ig-typography__caption text_2">
+                    {{ item.address?.country }}
+                  </p>
+                </div>
+              </span>
+            </igx-list-item>
+          }
+        </igx-list>
+      </div>
+      <a target="_blank" [routerLink]="['/accounts']" class="ig-typography__body-2 hyperlink">
+        View All Accounts
+      </a>
+    </div>
+    <div class="column-layout group_5">
+      <p class="text">
+        Recent Contacts
+      </p>
+      <div class="column-layout group_6">
+        <igx-list class="list">
+          @for (item of northwindSwaggerCustomerDto; track item) {
+            <igx-list-item>
+              <span igxListThumbnail>
+                <igx-avatar shape="rounded" class="avatar_1 avatar_1_1">
+                  <igx-icon class="icon_1">
+                    person
+                  </igx-icon>
+                </igx-avatar>
+              </span>
+              <span igxListLine>
+                <div class="column-layout group_7">
+                  <a target="_blank" class="ig-typography__body-2 hyperlink_2">
+                    {{ item.contactName }}
+                  </a>
+                  <div class="row-layout group_8">
+                    <p class="ig-typography__caption text_1">
+                      {{ item.contactTitle }}
+                    </p>
+                    <p class="ig-typography__caption text_2">
+                      &#64;
+                    </p>
+                    <p class="ig-typography__caption text_1">
+                      {{ item.customerId }}
+                    </p>
+                  </div>
+                </div>
+              </span>
+            </igx-list-item>
+          }
+        </igx-list>
+      </div>
+      <a target="_blank" [routerLink]="['/contacts']" class="ig-typography__body-2 hyperlink">
+        View All Contacts
+      </a>
+    </div>
+  </div>
+  <div class="column-layout group_4">
+    <div class="column-layout group_3">
+      <p class="text">
+        My Meetings
+      </p>
+      <igx-list class="list">
+        @for (item of cRMAppDataMeetingsTasks; track item) {
+          <igx-list-item>
+            <span igxListThumbnail>
+              <igx-avatar class="avatar_2 avatar_2_1">
+                <igx-icon class="icon_2">
+                  calendar_month
+                </igx-icon>
+              </igx-avatar>
+            </span>
+            <span igxListLine>
+              <div class="column-layout group_9">
+                <div class="row-layout group_10">
+                  <p class="ig-typography__subtitle-2 text_1">
+                    Meeting with
+                  </p>
+                  <p class="ig-typography__subtitle-2 text_1">
+                    {{ item.Contact }}
+                  </p>
+                </div>
+                <div class="row-layout group_11">
+                  <p class="ig-typography__caption text_2">
+                    {{ item.MeetingDate }}
+                  </p>
+                  <p class="ig-typography__caption text_2">
+                    -
+                  </p>
+                  <p class="ig-typography__caption text_2">
+                    {{ item.MeetingTime }}
+                  </p>
+                </div>
+                <igx-chip class="chip">
+                  {{ item.MeetingType }}
+                </igx-chip>
+              </div>
+            </span>
+          </igx-list-item>
+        }
+      </igx-list>
+      <a target="_blank" [routerLink]="['/calendar']" class="ig-typography__body-2 hyperlink">
+        View Calendar
+      </a>
+    </div>
+    <div class="column-layout group_3">
+      <p class="text">
+        Today’s Tasks
+      </p>
+      <igx-list class="list">
+        @for (item of cRMAppDataMeetingsTasks; track item) {
+          <igx-list-item>
+            <span igxListThumbnail>
+              <igx-avatar class="avatar_2 avatar_2_2">
+                <igx-icon class="icon_2">
+                  task_alt
+                </igx-icon>
+              </igx-avatar>
+            </span>
+            <span igxListLine>
+              <div class="column-layout group_9">
+                <div class="row-layout group_12">
+                  <p class="ig-typography__subtitle-2 text_1">
+                    {{ item.Task }}
+                  </p>
+                  <p class="ig-typography__subtitle-2 text_1">
+                    -
+                  </p>
+                  <p class="ig-typography__subtitle-2 text_1">
+                    {{ item.Company }}
+                  </p>
+                </div>
+                <div class="row-layout group_13">
+                  <p class="ig-typography__caption text_2">
+                    Due by
+                  </p>
+                  <p class="ig-typography__caption text_2">
+                    {{ item.DueDate }}
+                  </p>
+                </div>
+                <igx-chip class="chip">
+                  {{ item.TaskStatus }}
+                </igx-chip>
+              </div>
+            </span>
+          </igx-list-item>
+        }
+      </igx-list>
+      <a target="_blank" [routerLink]="['/tasks']" class="ig-typography__body-2 hyperlink">
+        View Tasks
+      </a>
+    </div>
+  </div>
+</div>

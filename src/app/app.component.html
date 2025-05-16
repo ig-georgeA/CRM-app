@@ -1,0 +1,72 @@
+<div class="row-layout group">
+  <div [igxToggleAction]="navDrawer" class="row-layout group_1">
+    <igx-icon class="icon">
+      menu
+    </igx-icon>
+  </div>
+  <igx-navbar class="navbar">
+    <igx-navbar-title class="navbar-content">
+      <img src="/assets/CRM%20Logo.svg" class="image" />
+    </igx-navbar-title>
+    <button igxRipple igxIconButton="flat" class="icon-button">
+      <igx-icon class="icon_1">
+        search
+      </igx-icon>
+    </button>
+    <button igxRipple igxIconButton="flat" class="icon-button">
+      <igx-icon class="icon_1">
+        settings
+      </igx-icon>
+    </button>
+    <button igxRipple igxIconButton="flat" class="icon-button">
+      <igx-icon class="icon_1">
+        notifications_none
+      </igx-icon>
+    </button>
+  </igx-navbar>
+</div>
+<div class="row-layout group_2">
+  <igx-nav-drawer [isOpen]="true" [pin]="true" width="250px" #navDrawer class="nav-drawer">
+    <ng-template igxDrawer>
+      <div igxDrawerItem igxRipple [routerLink]="['home']">
+        <igx-icon class="icon_2">
+          home
+        </igx-icon>
+        <span>Home</span>
+      </div>
+      <div igxDrawerItem igxRipple [routerLink]="['accounts']">
+        <igx-icon class="icon_2">
+          apartment
+        </igx-icon>
+        <span>Accounts</span>
+      </div>
+      <div igxDrawerItem igxRipple [routerLink]="['contacts']">
+        <igx-icon class="icon_2">
+          account_circle
+        </igx-icon>
+        <span>Contacts</span>
+      </div>
+      <div igxDrawerItem igxRipple [routerLink]="['reports']">
+        <igx-icon class="icon_2">
+          assignment
+        </igx-icon>
+        <span>Reports</span>
+      </div>
+      <div igxDrawerItem igxRipple [routerLink]="['calendar']">
+        <igx-icon class="icon_2">
+          insert_chart
+        </igx-icon>
+        <span>Calendar</span>
+      </div>
+      <div igxDrawerItem igxRipple [routerLink]="['tasks']">
+        <igx-icon class="icon_2">
+          task_alt
+        </igx-icon>
+        <span>Tasks</span>
+      </div>
+    </ng-template>
+  </igx-nav-drawer>
+  <div class="view-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

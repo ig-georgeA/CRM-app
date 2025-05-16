@@ -1,0 +1,172 @@
+<div class="row-layout group">
+  <div class="column-layout group_1">
+    <div class="column-layout group_2">
+      <div class="row-layout header">
+        <div class="row-layout page-title">
+          <igx-avatar shape="rounded" class="avatar">
+            <igx-icon class="icon">
+              apartment
+            </igx-icon>
+          </igx-avatar>
+          <h6 class="h6">
+            Accounts
+          </h6>
+        </div>
+        <div class="row-layout buttons">
+          <button igxButton="contained" type="button" igxRipple (click)="newAccountDialog.toggle()" class="button">
+            <igx-icon>
+              business
+            </igx-icon>
+            <span>New Account</span>
+          </button>
+          <button igxButton="outlined" disabled type="button" igxRipple class="button">
+            <igx-icon>
+              search
+            </igx-icon>
+            <span>Discover companies</span>
+          </button>
+          <button igxButton="outlined" disabled type="button" igxRipple class="button">
+            <igx-icon>
+              import_export
+            </igx-icon>
+            <span>Import</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row-layout filters-and-sorting">
+      <div class="row-layout group_3">
+        <igx-select type="box" [(ngModel)]="value" class="user-input">
+          <igx-select-item value="1">
+            My Accounts
+          </igx-select-item>
+          <igx-select-item value="2">
+            All Accounts
+          </igx-select-item>
+        </igx-select>
+        <igx-input-group type="border" class="user-input">
+          <igx-prefix>
+            <igx-icon class="icon_1">
+              search
+            </igx-icon>
+          </igx-prefix>
+          <input type="Search" placeholder="Search accounts" igxInput />
+        </igx-input-group>
+      </div>
+      <igx-select type="border" [(ngModel)]="value1" class="user-input">
+        <igx-select-item value="1">
+          Recently updated
+        </igx-select-item>
+        <igx-select-item value="2">
+          Name
+        </igx-select-item>
+      </igx-select>
+    </div>
+    <igx-grid primaryKey="customerId" rowSelection="single" [rowEditable]="true" [allowAdvancedFiltering]="true" [advancedFilteringExpressionsTree]="advancedFilteringExpressionsTree" pagingMode="remote" [hideRowSelectors]="true" [allowFiltering]="true" filterMode="excelStyleFilter" [data]="grid_Data_Request?.items || []" (rowSelectionChanging)="selectedCustomer = $event.newSelection[0]" (rowAdded)="rowAddedGrid($event)" (rowEditDone)="rowEditDoneGrid($event)" (rowDeleted)="rowDeletedGrid($event)" class="grid">
+      <igx-grid-toolbar>
+        <igx-grid-toolbar-actions>
+          <igx-grid-toolbar-advanced-filtering></igx-grid-toolbar-advanced-filtering>
+        </igx-grid-toolbar-actions>
+        <igx-grid-toolbar-title>Grid Toolbar</igx-grid-toolbar-title>
+      </igx-grid-toolbar>
+      <igx-paginator [perPage]="grid_Page_Size" [totalRecords]="grid_Data_Request?.totalRecordsCount || 0" [page]="grid_Page_Index" (pageChange)="grid_Page_Index = $event" (perPageChange)="grid_Page_Size = $event"></igx-paginator>
+      <igx-column field="customerId" dataType="string" header="customerId" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false">
+        <ng-template igxCell let-cell="cell">
+          <a target="_blank" [routerLink]="['/account-detail']" class="ig-typography__body-2 hyperlink">
+            {{ cell.value }}
+          </a>
+        </ng-template>
+      </igx-column>
+      <igx-column field="companyName" dataType="string" header="companyName" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-column field="contactName" dataType="string" header="contactName" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-column field="contactTitle" dataType="string" header="contactTitle" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-column field="address.street" dataType="string" header="address street" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-column field="address.city" dataType="string" header="address city" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-column field="address.region" dataType="string" header="address region" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-column field="address.postalCode" dataType="string" header="address postalCode" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-column field="address.country" dataType="string" header="address country" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-column field="address.phone" dataType="string" header="address phone" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+      <igx-action-strip>
+        <igx-grid-pinning-actions></igx-grid-pinning-actions>
+        <igx-grid-editing-actions [addRow]="true"></igx-grid-editing-actions>
+      </igx-action-strip>
+    </igx-grid>
+  </div>
+</div>
+<igx-dialog [closeOnOutsideSelect]="true" #newAccountDialog>
+  <igx-dialog-title>
+    <h5>
+      New Account
+    </h5>
+  </igx-dialog-title>
+  <ng-container>
+    <form (ngSubmit)="ngSubmitCustomerDto()" [formGroup]="customerDtoFormModel" #form class="column-layout form">
+      <div class="column-layout form_fields">
+        <igx-input-group type="border">
+          <input type="text" required igxInput formControlName="companyName" />
+          <label igxLabel>Company name</label>
+        </igx-input-group>
+        <ng-container formGroupName="address">
+          <igx-input-group type="border">
+            <input type="text" required igxInput formControlName="country" />
+            <label igxLabel>Country</label>
+          </igx-input-group>
+        </ng-container>
+        <igx-input-group type="border">
+          <input type="text" igxInput formControlName="contactName" />
+          <label igxLabel>Contact name</label>
+        </igx-input-group>
+        <igx-input-group type="border">
+          <input type="text" igxInput formControlName="contactTitle" />
+          <label igxLabel>Contact title</label>
+        </igx-input-group>
+        <ng-container formGroupName="address">
+          <igx-input-group type="border">
+            <input type="text" igxInput formControlName="street" />
+            <label igxLabel>Street</label>
+          </igx-input-group>
+        </ng-container>
+        <ng-container formGroupName="address">
+          <igx-input-group type="border">
+            <input type="text" igxInput formControlName="city" />
+            <label igxLabel>City</label>
+          </igx-input-group>
+        </ng-container>
+        <div class="row-layout group_4">
+          <ng-container formGroupName="address">
+            <igx-input-group type="border" class="input">
+              <input type="text" igxInput formControlName="region" />
+              <label igxLabel>Region</label>
+            </igx-input-group>
+          </ng-container>
+          <ng-container formGroupName="address">
+            <igx-input-group type="border" class="input">
+              <input type="text" igxInput formControlName="postalCode" />
+              <label igxLabel>Postal code</label>
+            </igx-input-group>
+          </ng-container>
+        </div>
+        <ng-container formGroupName="address">
+          <igx-input-group type="border">
+            <input type="text" igxInput formControlName="phone" />
+            <label igxLabel>Phone</label>
+          </igx-input-group>
+        </ng-container>
+      </div>
+      <igx-snackbar actionText="OK" (clicked)="snackbarsuccess.toggle()" #snackbarsuccess>
+        Your new submission was saved successfully!
+      </igx-snackbar>
+      <igx-snackbar actionText="OK" (clicked)="snackbarerror.toggle()" #snackbarerror>
+        Uh-oh! Something went wrong.
+      </igx-snackbar>
+    </form>
+  </ng-container>
+  <igx-dialog-actions>
+    <button igxButton="outlined" type="button" igxRipple (click)="newAccountDialog.toggle()" class="button_1">
+      Cancel
+    </button>
+    <button igxButton="contained" type="submit" igxRipple (click)="clickButton2()" class="button_1">
+      Add
+    </button>
+  </igx-dialog-actions>
+</igx-dialog>

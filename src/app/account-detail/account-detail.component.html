@@ -1,0 +1,500 @@
+<div class="column-layout group">
+  <button igxButton="flat" type="button" igxRipple [routerLink]="['/accounts']" class="button">
+    <igx-icon>
+      arrow_back
+    </igx-icon>
+    <span>All accounts</span>
+  </button>
+  <div class="row-layout account-header">
+    <div class="row-layout page-title">
+      <igx-avatar shape="rounded" class="avatar avatar_4">
+        <igx-icon class="icon">
+          apartment
+        </igx-icon>
+      </igx-avatar>
+      <div class="row-layout group_1">
+        <h5 class="content">
+          {{ selectedCustomer1?.companyName }}
+        </h5>
+        <p class="text">
+          {{ selectedCustomer1?.customerId }}
+        </p>
+      </div>
+    </div>
+    <div class="row-layout group_2">
+      <div class="column-layout group_3">
+        <p class="ig-typography__subtitle-2 content">
+          Primary Contact
+        </p>
+        <p class="text">
+          {{ selectedCustomer1?.contactName }}
+        </p>
+        <p class="text">
+          Sales Representative
+        </p>
+      </div>
+      <div class="column-layout group_3">
+        <p class="ig-typography__subtitle-2 content">
+          Billing Address
+        </p>
+        <p class="text">
+          {{ selectedCustomer1?.address?.street }}
+        </p>
+        <div class="column-layout group_4">
+          <div class="row-layout group_5">
+            <p class="text">
+              {{ selectedCustomer1?.address?.city }}
+            </p>
+            <p class="text">
+              {{ selectedCustomer1?.address?.country }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="column-layout group_3">
+        <p class="ig-typography__subtitle-2 content">
+          Phone
+        </p>
+        <p class="text">
+          {{ selectedCustomer1?.address?.phone }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row-layout group_6">
+  <div class="column-layout group_7">
+    <igx-tabs [disableAnimation]="true" class="tabs">
+      <igx-tab-item [selected]="true" class="tab-item">
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Sales</span>
+        </igx-tab-header>
+        <igx-tab-content class="column-layout tab-item-content">
+          <igx-grid [data]="northwindSwaggerOrderDto" primaryKey="orderId" rowSelection="single" [hideRowSelectors]="true" [allowFiltering]="true" filterMode="excelStyleFilter" (rowSelectionChanging)="selectedOrder = $event.newSelection[0]" class="grid">
+            <igx-grid-toolbar>
+              <igx-grid-toolbar-title>Orders</igx-grid-toolbar-title>
+            </igx-grid-toolbar>
+            <igx-column field="orderId" dataType="number" header="orderId" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="shipVia" dataType="string" header="shipVia" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="shipperId" dataType="number" header="shipperId" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="orderDate" dataType="date" header="orderDate" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="requiredDate" dataType="date" header="requiredDate" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="freight" dataType="number" header="freight" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="completed" dataType="boolean" header="completed" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="shipAddress.street" dataType="string" header="shipAddress street" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="shipAddress.city" dataType="string" header="shipAddress city" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="shipAddress.region" dataType="string" header="shipAddress region" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="shipAddress.postalCode" dataType="string" header="shipAddress postalCode" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="shipAddress.country" dataType="string" header="shipAddress country" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="shipAddress.phone" dataType="string" header="shipAddress phone" [filterable]="true" [groupable]="true" [sortable]="true" [selectable]="false"></igx-column>
+          </igx-grid>
+          <igx-grid [data]="northwindSwaggerProductDto" primaryKey="productId" [allowFiltering]="true" filterMode="excelStyleFilter" class="grid">
+            <igx-grid-toolbar>
+              <igx-grid-toolbar-title>Order details</igx-grid-toolbar-title>
+            </igx-grid-toolbar>
+            <igx-column field="productId" dataType="number" header="productId" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="productName" dataType="string" header="productName" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="supplierId" dataType="number" header="supplierId" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="categoryId" dataType="number" header="categoryId" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="quantityPerUnit" dataType="string" header="quantityPerUnit" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="unitPrice" dataType="number" header="unitPrice" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="unitsInStock" dataType="number" header="unitsInStock" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="unitsOnOrder" dataType="number" header="unitsOnOrder" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="reorderLevel" dataType="number" header="reorderLevel" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+            <igx-column field="discontinued" dataType="boolean" header="discontinued" [filterable]="true" [sortable]="true" [selectable]="false"></igx-column>
+          </igx-grid>
+        </igx-tab-content>
+      </igx-tab-item>
+      <igx-tab-item class="tab-item">
+        <igx-tab-content class="column-layout tab-item-content">
+          <div class="row-layout buttons-1">
+            <button igxButton="outlined" type="button" igxRipple class="button_1">
+              <igx-icon>
+                person_add
+              </igx-icon>
+              <span>Contact</span>
+            </button>
+            <button igxButton="outlined" type="button" igxRipple class="button_1">
+              <igx-icon>
+                star_border
+              </igx-icon>
+              <span>New Opportunity</span>
+            </button>
+            <button igxButton="outlined" type="button" igxRipple class="button_1">
+              <igx-icon>
+                error_outline
+              </igx-icon>
+              <span>New Case</span>
+            </button>
+            <button igxButton="outlined" type="button" igxRipple class="button_1">
+              <igx-icon>
+                note_add
+              </igx-icon>
+              <span>Add note</span>
+            </button>
+            <button igxButton="outlined" type="button" igxRipple class="button_1">
+              <igx-icon>
+                file_copy
+              </igx-icon>
+              <span>Add files</span>
+            </button>
+          </div>
+          <igx-accordion [singleBranchExpand]="true" class="accordion">
+            <igx-expansion-panel [collapsed]="false">
+              <igx-expansion-panel-body>
+                <div class="column-layout group_8">
+                  <div class="row-layout group_9">
+                    <igx-avatar initials="JL" shape="circle" class="avatar_1 avatar_1_1"></igx-avatar>
+                    <a target="_blank" class="ig-typography__body-2 hyperlink">
+                      Janine Labrune
+                    </a>
+                  </div>
+                  <div class="column-layout group_10">
+                    <div class="row-layout group_11">
+                      <p class="ig-typography__subtitle-2 text_1">
+                        Account Name:
+                      </p>
+                      <p class="ig-typography__body-2 text">
+                        Thomas Hardy
+                      </p>
+                    </div>
+                    <div class="row-layout group_11">
+                      <p class="ig-typography__subtitle-2 text_1">
+                        Title:
+                      </p>
+                      <p class="ig-typography__body-2 text">
+                        Owner
+                      </p>
+                    </div>
+                    <div class="row-layout group_12">
+                      <p class="ig-typography__subtitle-2 text_1">
+                        Direct:
+                      </p>
+                      <igx-checkbox class="checkbox"></igx-checkbox>
+                    </div>
+                  </div>
+                </div>
+              </igx-expansion-panel-body>
+              <igx-expansion-panel-header iconPosition="right">
+                <igx-expansion-panel-title>Related Contacts (1)</igx-expansion-panel-title>
+              </igx-expansion-panel-header>
+            </igx-expansion-panel>
+            <igx-expansion-panel>
+              <igx-expansion-panel-body>
+                <div class="column-layout group_8">
+                  <div class="row-layout group_9">
+                    <igx-avatar src="/assets/Account-List-Avatar-Icon.svg" shape="rounded" class="avatar"></igx-avatar>
+                    <a target="_blank" class="ig-typography__body-2 hyperlink">
+                      Around The Horn
+                    </a>
+                  </div>
+                  <div class="column-layout group_10">
+                    <div class="row-layout group_11">
+                      <p class="ig-typography__subtitle-2 text_1">
+                        Stage:
+                      </p>
+                      <p class="ig-typography__body-2 text">
+                        Qualification
+                      </p>
+                    </div>
+                    <div class="row-layout group_11">
+                      <p class="ig-typography__subtitle-2 text_1">
+                        Amount:
+                      </p>
+                      <p class="ig-typography__body-2 text">
+                        Owner
+                      </p>
+                    </div>
+                    <div class="row-layout group_11">
+                      <p class="ig-typography__subtitle-2 text_1">
+                        Close Date:
+                      </p>
+                      <p class="ig-typography__body-2 text">
+                        9/12/2022
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </igx-expansion-panel-body>
+              <igx-expansion-panel-header iconPosition="right">
+                <igx-expansion-panel-title>Opportunities (1)</igx-expansion-panel-title>
+              </igx-expansion-panel-header>
+            </igx-expansion-panel>
+            <igx-expansion-panel>
+              <igx-expansion-panel-body>
+                <igx-list class="list">
+                  <igx-list-item>
+                    <span igxListThumbnail>
+                      <igx-avatar shape="circle" class="avatar_2 avatar_2_1">
+                        <igx-icon class="icon_1">
+                          insert_drive_file
+                        </igx-icon>
+                      </igx-avatar>
+                    </span>
+                    <span igxListLine>
+                      <a target="_blank" class="ig-typography__body-2 hyperlink_1">
+                        Around-The-Horn-Contract-2022.docx
+                      </a>
+                    </span>
+                  </igx-list-item>
+                  <igx-list-item>
+                    <span igxListThumbnail>
+                      <igx-avatar shape="circle" class="avatar_2 avatar_2_2">
+                        <igx-icon class="icon_1">
+                          insert_drive_file
+                        </igx-icon>
+                      </igx-avatar>
+                    </span>
+                    <span igxListLine>
+                      <a target="_blank" class="ig-typography__body-2 hyperlink_1">
+                        Around-The-Horn-Contract-2021.docx
+                      </a>
+                    </span>
+                  </igx-list-item>
+                </igx-list>
+              </igx-expansion-panel-body>
+              <igx-expansion-panel-header iconPosition="right">
+                <igx-expansion-panel-title>Contracts (2)</igx-expansion-panel-title>
+              </igx-expansion-panel-header>
+            </igx-expansion-panel>
+            <igx-expansion-panel>
+              <igx-expansion-panel-body>
+                <p class="ig-typography__body-2 text_2">
+                  No cases filed.
+                </p>
+              </igx-expansion-panel-body>
+              <igx-expansion-panel-header iconPosition="right">
+                <igx-expansion-panel-title>Cases (0)</igx-expansion-panel-title>
+              </igx-expansion-panel-header>
+            </igx-expansion-panel>
+            <igx-expansion-panel>
+              <igx-expansion-panel-body>
+                <p class="ig-typography__body-2 text_2">
+                  No notes added.
+                </p>
+              </igx-expansion-panel-body>
+              <igx-expansion-panel-header iconPosition="right">
+                <igx-expansion-panel-title>Notes (0)</igx-expansion-panel-title>
+              </igx-expansion-panel-header>
+            </igx-expansion-panel>
+            <igx-expansion-panel>
+              <igx-expansion-panel-body>
+                <p class="ig-typography__body-2 text_2">
+                  No files uploaded
+                </p>
+              </igx-expansion-panel-body>
+              <igx-expansion-panel-header iconPosition="right">
+                <igx-expansion-panel-title>Files (0)</igx-expansion-panel-title>
+              </igx-expansion-panel-header>
+            </igx-expansion-panel>
+          </igx-accordion>
+        </igx-tab-content>
+        <igx-tab-header>
+          <igx-icon igxTabHeaderIcon>
+            info
+          </igx-icon>
+          <span igxTabHeaderLabel>Related</span>
+        </igx-tab-header>
+      </igx-tab-item>
+      <igx-tab-item disabled class="tab-item">
+        <igx-tab-content class="row-layout tab-item-content_1">
+          <div class="row-layout demo-content">
+            <img src="/assets/start-building-dark.svg" class="image" />
+            <p class="ig-typography__body-2 text_3">
+              Remove the "demo-content" container, and add your own content.
+            </p>
+          </div>
+        </igx-tab-content>
+        <igx-tab-header>
+          <igx-icon igxTabHeaderIcon>
+            info
+          </igx-icon>
+          <span igxTabHeaderLabel>Details</span>
+        </igx-tab-header>
+      </igx-tab-item>
+      <igx-tab-item disabled class="tab-item">
+        <igx-tab-content class="row-layout tab-item-content_1">
+          <div class="row-layout demo-content-1">
+            <img src="/assets/start-building-dark.svg" class="image" />
+            <p class="ig-typography__body-2 text_3">
+              Remove the "demo-content" container, and add your own content.
+            </p>
+          </div>
+        </igx-tab-content>
+        <igx-tab-header>
+          <igx-icon igxTabHeaderIcon>
+            info
+          </igx-icon>
+          <span igxTabHeaderLabel>News</span>
+        </igx-tab-header>
+      </igx-tab-item>
+    </igx-tabs>
+  </div>
+  <div class="column-layout group_13">
+    <igx-tabs [disableAnimation]="true" class="tabs">
+      <igx-tab-item [selected]="true" class="tab-item">
+        <igx-tab-content class="column-layout tab-item-content_2">
+          <div class="column-layout group_14">
+            <div class="row-layout buttons">
+              <button igxButton="outlined" type="button" igxRipple class="button_1">
+                <igx-icon>
+                  calendar_today
+                </igx-icon>
+                <span>New Meeting</span>
+              </button>
+              <button igxButton="outlined" type="button" igxRipple class="button_1">
+                <igx-icon>
+                  assignment
+                </igx-icon>
+                <span>New task</span>
+              </button>
+              <button igxButton="outlined" type="button" igxRipple class="button_1">
+                <igx-icon>
+                  call
+                </igx-icon>
+                <span>Log a call</span>
+              </button>
+            </div>
+            <igx-accordion [singleBranchExpand]="true" class="accordion">
+              <igx-expansion-panel>
+                <igx-expansion-panel-body>
+                  <igx-list class="list">
+                    <igx-list-item>
+                      <span igxListThumbnail>
+                        <igx-avatar src="/assets/Calendar-Avatar-Icon.svg" class="avatar_3"></igx-avatar>
+                      </span>
+                      <span igxListLine>
+                        <div class="column-layout group_15">
+                          <div class="row-layout group_16">
+                            <p class="ig-typography__subtitle-2 text_4">
+                              Project Intro
+                            </p>
+                          </div>
+                          <div class="row-layout group_17">
+                            <p class="ig-typography__caption text_2">
+                              11/1/2022
+                            </p>
+                            <p class="ig-typography__caption text_2">
+                              -
+                            </p>
+                            <p class="ig-typography__caption text_2">
+                              10am
+                            </p>
+                          </div>
+                          <igx-chip class="chip">
+                            Zoom Meeting
+                          </igx-chip>
+                        </div>
+                      </span>
+                    </igx-list-item>
+                    <igx-list-item>
+                      <span igxListThumbnail>
+                        <igx-avatar src="/assets/Calendar-Avatar-Icon.svg" class="avatar_3"></igx-avatar>
+                      </span>
+                      <span igxListLine>
+                        <div class="column-layout group_15">
+                          <div class="row-layout group_16">
+                            <p class="ig-typography__subtitle-2 text_4">
+                              Sync Meeting
+                            </p>
+                          </div>
+                          <div class="row-layout group_17">
+                            <p class="ig-typography__caption text_2">
+                              11/7/2022
+                            </p>
+                            <p class="ig-typography__caption text_2">
+                              -
+                            </p>
+                            <p class="ig-typography__caption text_2">
+                              2pm
+                            </p>
+                          </div>
+                          <igx-chip class="chip">
+                            On Site Meeting
+                          </igx-chip>
+                        </div>
+                      </span>
+                    </igx-list-item>
+                    <igx-list-item>
+                      <span igxListThumbnail>
+                        <igx-avatar src="/assets/Calendar-Avatar-Icon.svg" class="avatar_3"></igx-avatar>
+                      </span>
+                      <span igxListLine>
+                        <div class="column-layout group_15">
+                          <div class="row-layout group_16">
+                            <p class="ig-typography__subtitle-2 text_4">
+                              Wrap Up Meeting
+                            </p>
+                          </div>
+                          <div class="row-layout group_17">
+                            <p class="ig-typography__caption text_2">
+                              11/14/2022
+                            </p>
+                            <p class="ig-typography__caption text_2">
+                              -
+                            </p>
+                            <p class="ig-typography__caption text_2">
+                              4pm
+                            </p>
+                          </div>
+                          <igx-chip class="chip">
+                            Phone call
+                          </igx-chip>
+                        </div>
+                      </span>
+                    </igx-list-item>
+                  </igx-list>
+                </igx-expansion-panel-body>
+                <igx-expansion-panel-header iconPosition="right">
+                  <igx-expansion-panel-title>Upcoming Events (3)</igx-expansion-panel-title>
+                </igx-expansion-panel-header>
+              </igx-expansion-panel>
+              <igx-expansion-panel>
+                <igx-expansion-panel-body>
+                  <p class="ig-typography__body-2 text_2">
+                    No tasks added.
+                  </p>
+                </igx-expansion-panel-body>
+                <igx-expansion-panel-header iconPosition="right">
+                  <igx-expansion-panel-title>Tasks (0)</igx-expansion-panel-title>
+                </igx-expansion-panel-header>
+              </igx-expansion-panel>
+              <igx-expansion-panel>
+                <igx-expansion-panel-body>
+                  <p class="ig-typography__body-2 text_2">
+                    No call logged.
+                  </p>
+                </igx-expansion-panel-body>
+                <igx-expansion-panel-header iconPosition="right">
+                  <igx-expansion-panel-title>Call Logs (0)</igx-expansion-panel-title>
+                </igx-expansion-panel-header>
+              </igx-expansion-panel>
+            </igx-accordion>
+          </div>
+        </igx-tab-content>
+        <igx-tab-header>
+          <igx-icon igxTabHeaderIcon>
+            info
+          </igx-icon>
+          <span igxTabHeaderLabel>Activity</span>
+        </igx-tab-header>
+      </igx-tab-item>
+      <igx-tab-item disabled class="tab-item">
+        <igx-tab-content class="row-layout tab-item-content_3">
+          <div class="column-layout demo-content-1">
+            <img src="/assets/start-building-dark.svg" class="image" />
+            <p class="ig-typography__body-2 text_3">
+              Remove the "demo-content" container, and add your own content.
+            </p>
+          </div>
+        </igx-tab-content>
+        <igx-tab-header>
+          <igx-icon igxTabHeaderIcon>
+            info
+          </igx-icon>
+          <span igxTabHeaderLabel>Conversations</span>
+        </igx-tab-header>
+      </igx-tab-item>
+    </igx-tabs>
+  </div>
+</div>
