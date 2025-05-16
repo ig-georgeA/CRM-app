@@ -4,8 +4,8 @@
 @use "@infragistics/igniteui-angular/theming" as *;
 
 @include core();
-@include typography($font-family: "Open Sans", $type-scale: $fluent-type-scale);
-@include theme($palette: $light-fluent-word-palette, $schema: $light-fluent-schema);
+@include typography();
+@include theme($palette: $light-material-palette, $schema: $light-material-schema);
 
 body {
   background: var(--ig-surface-500);
