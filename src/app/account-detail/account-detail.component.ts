@@ -2,9 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IGX_ACCORDION_DIRECTIVES, IGX_CHIPS_DIRECTIVES, IGX_EXPANSION_PANEL_DIRECTIVES, IGX_GRID_DIRECTIVES, IGX_LIST_DIRECTIVES, IGX_TABS_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxCheckboxComponent, IgxIconComponent, IgxRippleDirective } from '@infragistics/igniteui-angular';
 import { Subject, take, takeUntil } from 'rxjs';
+import { OrderDto } from '../models/northwind-swagger/order-dto';
 import { ProductDto } from '../models/northwind-swagger/product-dto';
 import { CustomerDto } from '../models/northwind-swagger/customer-dto';
-import { OrderDto } from '../models/northwind-swagger/order-dto';
 import { NorthwindSwaggerService } from '../services/northwind-swagger.service';
 
 @Component({
